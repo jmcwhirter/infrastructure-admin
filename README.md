@@ -39,3 +39,8 @@ nginx['ssl_certificate_key'] = "~/cert_and_keys/server.key"
 12. sudo chef-server-ctl reconfigure
 13. sudo chef-server-ctl user-create ${chef_server_admin_username} ${chef_server_admin_firstname} ${chef_server_admin_lastname} ${chef_server_admin_email} ${chef_server_admin_password} -f ${chef_server_admin_username}.pem
 14. sudo chef-server-ctl org-create ${chef_server_org_shortname} \"${chef_server_org_longname}\" --association_user ${chef_server_admin_username} -f ${chef_server_org_shortname}-validator.pem
+
+Chef Node Setup:
+1. terraform apply (new node)
+2. knife bootstrap ec2-54-210-40-xxx.compute-1.amazonaws.com -x ec2-user -N node1 --sudo -i macbookpro.pem
+3. knife bootstrap ec2-54-210-xx-xxx.compute-1.amazonaws.com -x ec2-user -N node2 --sudo -i macbookpro.pem
