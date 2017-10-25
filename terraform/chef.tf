@@ -55,6 +55,12 @@ resource "aws_instance" "chef-server" {
     }
 }
 
+resource "aws_eip" "chef-server-eip" {
+  vpc = true
+  instance                  = "${aws_instance.chef-server.id}"
+  associate_with_private_ip = "${aws_instance.chef-server.private_ip}"
+}
+
 resource "aws_instance" "chef-node1" {
     ami = "${var.amis["chef-node"]}"
     availability_zone = "us-east-1a"
@@ -70,6 +76,12 @@ resource "aws_instance" "chef-node1" {
     }
 }
 
+resource "aws_eip" "chef-node1-eip" {
+  vpc = true
+  instance                  = "${aws_instance.chef-node1.id}"
+  associate_with_private_ip = "${aws_instance.chef-node1.private_ip}"
+}
+
 resource "aws_instance" "chef-node2" {
     ami = "${var.amis["chef-node"]}"
     availability_zone = "us-east-1a"
@@ -83,4 +95,10 @@ resource "aws_instance" "chef-node2" {
     tags {
         Name = "Chef Node 2"
     }
+}
+
+resource "aws_eip" "chef-node2-eip" {
+  vpc = true
+  instance                  = "${aws_instance.chef-node2.id}"
+  associate_with_private_ip = "${aws_instance.chef-node2.private_ip}"
 }
