@@ -41,7 +41,7 @@ resource "aws_security_group" "chef-server" {
 }
 
 resource "aws_instance" "chef-server" {
-    ami = "${lookup(var.amis, var.chef-server)}"
+    ami = "${var.amis["chef-server"]}"
     availability_zone = "us-east-1a"
     instance_type = "t2.large"
     key_name = "${var.aws_key_name}"
@@ -56,7 +56,7 @@ resource "aws_instance" "chef-server" {
 }
 
 resource "aws_instance" "chef-node1" {
-    ami = "${lookup(var.amis, var.chef-node)}"
+    ami = "${var.amis["chef-node"]}"
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
     key_name = "${var.aws_key_name}"
@@ -71,7 +71,7 @@ resource "aws_instance" "chef-node1" {
 }
 
 resource "aws_instance" "chef-node2" {
-    ami = "${lookup(var.amis, var.chef-node)}"
+    ami = "${var.amis["chef-node"]}"
     availability_zone = "us-east-1a"
     instance_type = "t2.micro"
     key_name = "${var.aws_key_name}"

@@ -6,14 +6,6 @@ variable "aws_region" {
     default = "us-east-1"
 }
 
-variable "chef-server" {
-    default = "chef-server"
-}
-
-variable "chef-node" {
-    default = "chef-node"
-}
-
 variable "amis" {
     description = "AMIs by region"
     default = {
